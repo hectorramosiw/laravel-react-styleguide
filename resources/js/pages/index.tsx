@@ -1,7 +1,7 @@
 import { Head, Link, usePage } from '@inertiajs/react';
 import { dashboard, login, register } from '@/routes';
 
-export default function Welcome({
+export default function Home({
     canRegister = true,
 }: {
     canRegister?: boolean;
