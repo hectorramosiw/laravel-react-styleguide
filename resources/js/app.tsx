@@ -4,6 +4,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import '../css/app.css';
 import { initializeTheme } from '@/hooks/use-appearance';
+import MainLayout from '@/layouts/main-layout';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -13,7 +14,13 @@ createInertiaApp({
         resolvePageComponent(
             `./pages/${name}.tsx`,
             import.meta.glob('./pages/**/*.tsx'),
-        ),
+        ).then((page: any) => {
+            if (page.default.layout === undefined) {
+                page.default.layout = (page: any) => <MainLayout>{page}</MainLayout>;
+            }
+
+            return page;
+        }),
     setup({ el, App, props }) {
         const root = createRoot(el);
 
