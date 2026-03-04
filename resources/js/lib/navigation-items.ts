@@ -14,7 +14,7 @@ export const navigationItems: NavigationItem[] = [
         label: 'Style Guide',
         href: '/style-guide',
         children: [
-            { label: 'Overview', href: '/style-guide' },
+            { label: 'Carousel', href: '/style-guide/carousel' },
             { label: 'Link', href: '/style-guide/link' },
             { label: 'Button', href: '/style-guide/button' },
             { label: 'Accordion', href: '/style-guide/accordion' },

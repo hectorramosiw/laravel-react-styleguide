@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 use Laravel\Fortify\Features;
 
 Route::inertia('/', 'index', [
@@ -15,16 +16,23 @@ require __DIR__.'/settings.php';
 
 // Style Guide Routes
 Route::prefix('/style-guide')->group(function () {
-    Route::get('/style-guide.index', function () {
-        return Inertia::render('StyleGuide/Overview');
+    Route::get('/', function () {
+        return Inertia::render('style-guide/index');
     })->name('style-guide.index');
-    Route::get('/style-guide.link', function () {
-        return Inertia::render('StyleGuide/Link');
+
+    Route::get('/carousel', function () {
+        return Inertia::render('style-guide/carousel');
+    })->name('style-guide.carousel');
+
+    Route::get('/link', function () {
+        return Inertia::render('style-guide/link');
     })->name('style-guide.link');
-    Route::get('/style-guide.button', function () {
-        return Inertia::render('StyleGuide/Button');
+
+    Route::get('/button', function () {
+        return Inertia::render('style-guide/button');
     })->name('style-guide.button');
-    Route::get('/style-guide.accordion', function () {
-        return Inertia::render('StyleGuide/Cards');
+
+    Route::get('/accordion', function () {
+        return Inertia::render('style-guide/accordion');
     })->name('style-guide.accordion');
 });
