@@ -16,7 +16,9 @@ createInertiaApp({
             import.meta.glob('./pages/**/*.tsx'),
         ).then((page: any) => {
             if (page.default.layout === undefined) {
-                page.default.layout = (page: any) => <MainLayout>{page}</MainLayout>;
+                page.default.layout = (page: any) => (
+                    <MainLayout>{page}</MainLayout>
+                );
             }
 
             return page;
