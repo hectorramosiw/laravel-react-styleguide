@@ -1,8 +1,11 @@
+// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+
 import js from '@eslint/js';
 import prettier from 'eslint-config-prettier/flat';
 import importPlugin from 'eslint-plugin-import';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
+import storybook from "eslint-plugin-storybook";
 import globals from 'globals';
 import typescript from 'typescript-eslint';
 
@@ -81,5 +84,7 @@ export default [
             'resources/js/routes/**',
         ],
     },
-    prettier, // Turn off all rules that might conflict with Prettier
+    // Turn off all rules that might conflict with Prettier
+    prettier,
+    ...storybook.configs["flat/recommended"]
 ];
