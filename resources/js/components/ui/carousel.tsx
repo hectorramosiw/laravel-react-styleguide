@@ -1,13 +1,12 @@
 "use client"
 
-import * as React from "react"
-import useEmblaCarousel, {
-  type UseEmblaCarouselType,
-} from "embla-carousel-react"
+import useEmblaCarousel from "embla-carousel-react"
+import type {UseEmblaCarouselType} from "embla-carousel-react";
 import { ArrowLeft, ArrowRight } from "lucide-react"
+import * as React from "react"
 
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -28,6 +27,9 @@ type CarouselContextProps = {
   scrollNext: () => void
   canScrollPrev: boolean
   canScrollNext: boolean
+  selectedIndex: number
+  scrollSnaps: number[]
+  scrollTo: (index: number) => void
 } & CarouselProps
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null)
@@ -60,11 +62,14 @@ function Carousel({
   )
   const [canScrollPrev, setCanScrollPrev] = React.useState(false)
   const [canScrollNext, setCanScrollNext] = React.useState(false)
+  const [selectedIndex, setSelectedIndex] = React.useState(0)
+  const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([])
 
   const onSelect = React.useCallback((api: CarouselApi) => {
     if (!api) return
     setCanScrollPrev(api.canScrollPrev())
     setCanScrollNext(api.canScrollNext())
+    setSelectedIndex(api.selectedScrollSnap())
   }, [])
 
   const scrollPrev = React.useCallback(() => {
@@ -74,6 +79,13 @@ function Carousel({
   const scrollNext = React.useCallback(() => {
     api?.scrollNext()
   }, [api])
+
+  const scrollTo = React.useCallback(
+    (index: number) => {
+      api?.scrollTo(index)
+    },
+    [api]
+  )
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -106,6 +118,7 @@ function Carousel({
   React.useEffect(() => {
     if (!api) return
     onSelect(api)
+    setScrollSnaps(api.scrollSnapList())
     api.on("reInit", onSelect)
     api.on("select", onSelect)
 
@@ -127,6 +140,9 @@ function Carousel({
         scrollNext,
         canScrollPrev,
         canScrollNext,
+        selectedIndex,
+        scrollSnaps,
+        scrollTo,
         plugins,
         setApi,
       }}
@@ -244,6 +260,48 @@ function CarouselNext({
   )
 }
 
+function CarouselDots({ className, ...props }: React.ComponentProps<"div">) {
+  const { scrollSnaps, selectedIndex, scrollTo, orientation } = useCarousel()
+
+  return (
+    <div
+      data-slot="carousel-dots"
+      className={cn(
+        "flex justify-center gap-2 pt-4",
+        orientation === "vertical" ? "flex-col" : "flex-row",
+        className
+      )}
+      {...props}
+    >
+      {scrollSnaps.map((_, index) => (
+        <CarouselDot
+          key={index}
+          onClick={() => scrollTo(index)}
+          active={index === selectedIndex}
+        />
+      ))}
+    </div>
+  )
+}
+
+function CarouselDot({
+  className,
+  active,
+  ...props
+}: React.ComponentProps<"button"> & { active: boolean }) {
+  return (
+    <button
+      type="button"
+      className={cn(
+        "size-2.5 rounded-full transition-all",
+        active ? "bg-primary w-6" : "bg-muted-foreground/30 hover:bg-muted-foreground/50",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
 export {
   type CarouselApi,
   Carousel,
@@ -251,4 +309,5 @@ export {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
+  CarouselDots,
 }
