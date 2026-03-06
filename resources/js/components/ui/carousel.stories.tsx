@@ -3,6 +3,7 @@ import * as React from 'react';
 import {
   Carousel,
   CarouselContent,
+  CarouselDots,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
@@ -29,7 +30,7 @@ type Story = StoryObj<typeof Carousel>;
 
 export const Default: Story = {
   render: (args) => (
-    <div className="flex w-full justify-center px-12">
+    <div className="flex w-full flex-col items-center gap-4 px-12">
       <Carousel {...args} className="w-full max-w-xs">
         <CarouselContent>
           {Array.from({ length: 5 }).map((_, index) => (
@@ -46,6 +47,31 @@ export const Default: Story = {
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />
+        <CarouselDots />
+      </Carousel>
+    </div>
+  ),
+};
+
+export const WithDots: Story = {
+  name: 'With Dot Navigation',
+  render: (args) => (
+    <div className="flex w-full flex-col items-center gap-4 px-12">
+      <Carousel {...args} className="w-full max-w-xs">
+        <CarouselContent>
+          {Array.from({ length: 5 }).map((_, index) => (
+            <CarouselItem key={index}>
+              <div className="p-1">
+                <Card>
+                  <CardContent className="flex aspect-square items-center justify-center p-6">
+                    <span className="text-4xl font-semibold">{index + 1}</span>
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselDots />
       </Carousel>
     </div>
   ),
