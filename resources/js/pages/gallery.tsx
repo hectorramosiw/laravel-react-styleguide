@@ -1,5 +1,6 @@
 import { Head } from '@inertiajs/react';
-import { Gallery, type GalleryItemData } from '@/components/gallery';
+import { Gallery } from '@/components/gallery';
+import type { GalleryItemData } from '@/components/gallery';
 
 const MOCK_IMAGES: GalleryItemData[] = [
     {
@@ -67,23 +68,23 @@ const MOCK_IMAGES: GalleryItemData[] = [
 
 export default function GalleryPage() {
     return (
-      <>
-        <Head title="Gallery" />
-        <div className="flex h-full flex-1 flex-col gap-4 p-4 md:p-8">
-            <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tight">
-                    Interactive Gallery
-                </h1>
-                <p className="text-muted-foreground">
-                    A full-featured gallery built with Radix UI, Embla
-                    Carousel, and Tailwind CSS v4.
-                </p>
-            </div>
+        <>
+            <Head title="Gallery" />
+            <div className="flex h-full flex-1 flex-col gap-4 p-4 md:p-8">
+                <div className="space-y-2">
+                    <h1 className="text-3xl font-bold tracking-tight">
+                        Interactive Gallery
+                    </h1>
+                    <p className="text-muted-foreground">
+                        A full-featured gallery built with Radix UI, Embla
+                        Carousel, and Tailwind CSS v4.
+                    </p>
+                </div>
 
-            <div className="mt-6 border-t pt-8">
-                <Gallery items={MOCK_IMAGES} aspectRatio={4 / 3} />
+                <div className="mt-6 border-t pt-8">
+                    <Gallery items={MOCK_IMAGES} aspectRatio={4 / 3} />
+                </div>
             </div>
-        </div>
-      </>
+        </>
     );
 }

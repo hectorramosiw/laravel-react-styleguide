@@ -1,5 +1,5 @@
-import * as React from 'react';
 import AutoHeight from 'embla-carousel-auto-height';
+import * as React from 'react';
 import {
     Carousel,
     CarouselContent,
@@ -15,7 +15,6 @@ import {
     DialogTitle,
     DialogDescription,
 } from '@/components/ui/dialog';
-import { cn } from '@/lib/utils';
 import type { GalleryItemData } from './types';
 
 interface GalleryLightboxProps {
@@ -53,7 +52,7 @@ export function GalleryLightbox({
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="flex sm:max-w-4xl max-w-7xl flex-col overflow-hidden border-none bg-transparent p-4 shadow-none">
+            <DialogContent className="flex max-w-7xl flex-col overflow-hidden border-none bg-transparent p-4 shadow-none sm:max-w-4xl">
                 <DialogHeader className="sr-only">
                     <DialogTitle>
                         {activeItem?.title || 'Gallery View'}
@@ -74,7 +73,7 @@ export function GalleryLightbox({
                             startIndex: initialIndex,
                         }}
                     >
-                        <CarouselContent className="items-start transition-[height] duration-300 ease-in-out pl-0 ml-0">
+                        <CarouselContent className="ml-0 items-start pl-0 transition-[height] duration-300 ease-in-out">
                             {items.map((item, index) => (
                                 <CarouselItem
                                     key={`${item.id}-${index}`}
@@ -93,8 +92,8 @@ export function GalleryLightbox({
                         </CarouselContent>
 
                         <div className="pointer-events-none absolute top-1/2 flex w-full -translate-y-1/2 justify-between px-4 sm:px-12">
-                            <CarouselPrevious className="pointer-events-auto cursor-pointer relative left-0 h-12 w-12 border-white/20 bg-black/20 text-white hover:bg-black/40" />
-                            <CarouselNext className="pointer-events-auto cursor-pointer relative right-0 h-12 w-12 border-white/20 bg-black/20 text-white hover:bg-black/40" />
+                            <CarouselPrevious className="pointer-events-auto relative left-0 h-12 w-12 cursor-pointer border-white/20 bg-black/20 text-white hover:bg-black/40" />
+                            <CarouselNext className="pointer-events-auto relative right-0 h-12 w-12 cursor-pointer border-white/20 bg-black/20 text-white hover:bg-black/40" />
                         </div>
                     </Carousel>
                 </div>

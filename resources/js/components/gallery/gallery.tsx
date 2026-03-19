@@ -20,13 +20,13 @@ interface GalleryProps {
 export function Gallery({
     items,
     className,
-    columns = 3,
     gap = 4,
     aspectRatio = 1,
     defaultViewMode = 'grid',
 }: GalleryProps) {
     const [filter, setFilter] = React.useState('all');
-    const [viewMode, setViewMode] = React.useState<GalleryViewMode>(defaultViewMode);
+    const [viewMode, setViewMode] =
+        React.useState<GalleryViewMode>(defaultViewMode);
     const [lightboxOpen, setLightboxOpen] = React.useState(false);
     const [activeItemIndex, setActiveItemIndex] = React.useState(0);
 
@@ -77,7 +77,10 @@ export function Gallery({
                         <ToggleGroupItem value="grid" aria-label="Grid View">
                             <LayoutGrid className="h-4 w-4" />
                         </ToggleGroupItem>
-                        <ToggleGroupItem value="masonry" aria-label="Masonry View">
+                        <ToggleGroupItem
+                            value="masonry"
+                            aria-label="Masonry View"
+                        >
                             <Square className="h-4 w-4" />
                         </ToggleGroupItem>
                     </ToggleGroup>
@@ -121,7 +124,9 @@ export function Gallery({
                 <Empty
                     title="No images found"
                     description="Try selecting a different category."
-                    icon={<Search className="h-10 w-10 text-muted-foreground" />}
+                    icon={
+                        <Search className="h-10 w-10 text-muted-foreground" />
+                    }
                 />
             )}
 

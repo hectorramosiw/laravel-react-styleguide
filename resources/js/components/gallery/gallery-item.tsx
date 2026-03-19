@@ -1,4 +1,4 @@
-import { Search, Eye } from 'lucide-react';
+import { Eye } from 'lucide-react';
 import * as React from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Card } from '@/components/ui/card';
@@ -43,7 +43,7 @@ export function GalleryItem({
     return (
         <Card
             className={cn(
-                'group relative cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg break-inside-avoid',
+                'group relative cursor-pointer break-inside-avoid overflow-hidden transition-all duration-300 hover:shadow-lg',
                 className,
             )}
             onClick={() => onClick(item)}
