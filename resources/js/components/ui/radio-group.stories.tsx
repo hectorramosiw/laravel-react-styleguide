@@ -14,15 +14,15 @@ type Story = StoryObj<typeof RadioGroup>;
 export const Default: Story = {
   render: (args) => (
     <RadioGroup defaultValue="comfortable" {...args}>
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center gap-2">
         <RadioGroupItem value="default" id="r1" />
         <FieldLabel htmlFor="r1">Default</FieldLabel>
       </div>
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center gap-2">
         <RadioGroupItem value="comfortable" id="r2" />
         <FieldLabel htmlFor="r2">Comfortable</FieldLabel>
       </div>
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center gap-2">
         <RadioGroupItem value="compact" id="r3" />
         <FieldLabel htmlFor="r3">Compact</FieldLabel>
       </div>
@@ -37,15 +37,15 @@ export const WithField: Story = {
       <FieldDescription>Choose how tight the layout should be.</FieldDescription>
       <FieldContent>
         <RadioGroup defaultValue="comfortable" {...args}>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center gap-2">
             <RadioGroupItem value="default" id="q1" />
             <FieldLabel htmlFor="q1">Default</FieldLabel>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center gap-2">
             <RadioGroupItem value="comfortable" id="q2" />
             <FieldLabel htmlFor="q2">Comfortable</FieldLabel>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center gap-2">
             <RadioGroupItem value="compact" id="q3" />
             <FieldLabel htmlFor="q3">Compact</FieldLabel>
           </div>
